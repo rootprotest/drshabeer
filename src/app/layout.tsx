@@ -6,6 +6,8 @@ import "../../styles/custom.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MoreInfoSection from "@/components/MoreInfoSection";
+import CustomCursor from "@/components/CustomCursor";
 
 
 
@@ -32,6 +34,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <CustomCursor />
+        <MoreInfoSection />
         <Header />
         <main>{children}</main>
         <Footer />

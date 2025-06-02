@@ -63305,7 +63305,7 @@ ul li {
 /* Container that holds the button fixed to the right */
 .side-content-container {
   position: fixed;
-  right: -150px;
+  right: -5%;
   top: 60%;
   transform: translateY(-50%);
   z-index: 999;
@@ -63344,8 +63344,7 @@ ul li {
   opacity: 0;
   transition: transform 0.6s ease, opacity 0.3s ease;
   z-index: 10;
-  left: 100px !important;
-
+  right: -60%;
 }
 
 /* On hover, move from right to left slowly and fade in */
