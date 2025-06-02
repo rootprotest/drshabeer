@@ -1,10 +1,21 @@
-import { Container } from 'react-bootstrap';
+'use client'
+import AboutSection from '@/components/Home/AboutSection';
+import FAQSection from '@/components/Home/FAQSection';
+import WhyChooseSection from '@/components/WhyChooseSection';
+
+import BariatricBanner from '@/components/BreadcrumbBanner';
+// Metadata export without explicit typing to avoid build errors
 
 export default function About() {
     return (
-        <Container className="mt-5">
-            <h2>About Us</h2>
-            <p>This is an about page using Bootstrap layout.</p>
-        </Container>
+        <>
+            <BariatricBanner title="About US" imageSrc="/img/bannerslider/Bariatric Surgery 2.webp" />
+            <div className="mt-5">
+                <AboutSection />
+                <WhyChooseSection />
+                <FAQSection />
+            </div>
+        </>
+
     );
 }

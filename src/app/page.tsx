@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import AboutSection from "@/components/Home/AboutSection";
 import BannerSection from "@/components/Home/BannerSection";
 import BannerSubSection from "@/components/Home/BannerSubSection";
@@ -8,20 +9,26 @@ import LatestArticles from "@/components/Home/LatestArticles";
 import SpecialitiesSection from "@/components/Home/SpecialitiesSection";
 import TestimonialSection from "@/components/Home/TestimonialSection";
 
-import { Container } from 'react-bootstrap';
+export const metadata: Metadata = {
+  title: "Dr Shabeer Ahmed | Gastrointestinal & Laparoscopic Surgeon",
+  description: "Dr. Shabeer Ahmed is a renowned Gastrointestinal and Laparoscopic Surgeon, specializing in advanced minimally invasive procedures with exceptional patient care.",
+  keywords: "Dr Shabeer Ahmed, Gastrointestinal Surgeon, Laparoscopic Surgeon, Colorectal Surgeon, Metabolic Surgery",
+};
 
 export default function Home() {
   return (
-    <div className="mt-5">
-      <BannerSection />
-      <BannerSubSection />
-      <AboutSection />
-      <CounterSection />
-      <SpecialitiesSection />
-      <GutHealthLibrary />
-      <LatestArticles />
-      <FAQSection />
-      <TestimonialSection />
-    </div>
+    <>
+      <div className="mt-5">
+        <BannerSection />
+        <BannerSubSection />
+        <AboutSection />
+        <CounterSection />
+        <SpecialitiesSection />
+        <GutHealthLibrary />
+        <LatestArticles />
+        <FAQSection />
+        <TestimonialSection />
+      </div>
+    </>
   );
 }
