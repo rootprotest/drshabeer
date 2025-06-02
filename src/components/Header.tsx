@@ -19,7 +19,7 @@ export default function Header() {
                         {dropdownOpen && (
                             <div className="dropdown-content">
                                 <Link href="/">Home</Link>
-                                <Link href="/about">About us</Link>
+                                <Link href="/aboutus">About us</Link>
                                 <Link href="/news">News & updates</Link>
                                 <Link href="/contact">Contact us</Link>
                             </div>

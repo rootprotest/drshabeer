@@ -56,8 +56,8 @@ const FAQSection = () => {
 
     const [openIndex, setOpenIndex] = useState(0);
 
-    const toggleAccordion = (index) => {
-        setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
+    const toggleAccordion = (index: number) => {
+        setOpenIndex(index === openIndex ? -1 : index);
     };
 
     return (
