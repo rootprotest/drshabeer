@@ -1,10 +1,14 @@
 'use client';
 import Image from 'next/image';
 
-export default function BariatricBanner({ title = 'Default Title', imageSrc }) {
+interface BariatricBannerProps {
+    title?: string;
+    imageSrc?: string | { src: string };
+}
+
+export default function BariatricBanner({ title = 'Default Title', imageSrc }: BariatricBannerProps) {
     const isValidImage =
-        typeof imageSrc === 'string' ||
-        (typeof imageSrc === 'object' && 'src' in imageSrc);
+        typeof imageSrc === 'string' || (typeof imageSrc === 'object' && 'src' in imageSrc);
 
     return (
         <div className="breadcrumb-bar-two">
@@ -13,12 +17,11 @@ export default function BariatricBanner({ title = 'Default Title', imageSrc }) {
                     <div className="p-0">
                         {isValidImage ? (
                             <Image
-                                src={imageSrc}
+                                src={typeof imageSrc === 'string' ? imageSrc : imageSrc?.src || ''}
                                 alt={title}
-                                className="img-fluid w-100"
-                                priority
                                 width={1920}
                                 height={500}
+                                className="img-fluid w-100"
                             />
                         ) : (
                             <div className="bg-secondary img-fluid w-100" style={{ height: '500px' }}>
