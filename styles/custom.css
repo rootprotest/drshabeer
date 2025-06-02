@@ -26659,7 +26659,8 @@ span.agree {
   background-color: #0de0fe;
   color: #ffffff;
   background-image: url(../public/img/icons/tick-icon.svg);
-  background-repeat: no-repeat background-position: center;
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: 18px;
   font-size: 0;
 }
