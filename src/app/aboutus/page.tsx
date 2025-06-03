@@ -1,4 +1,3 @@
-'use client'
 import AboutSection from '@/components/Home/AboutSection';
 import FAQSection from '@/components/Home/FAQSection';
 import WhyChooseSection from '@/components/WhyChooseSection';
@@ -6,12 +5,12 @@ import BariatricBanner from '@/components/BreadcrumbBanner';
 import Head from 'next/head';
 
 // SEO Metadata
-const pageMetadata = {
-    title: "About Dr. Shabeer Ahmed - Gastrointestinal & Laparoscopic Surgeon | Bangalore",
+export const metadata = {
+    title: "Dr Shabeer Ahmed | About Us",
     description:
-        "Learn about Dr. Shabeer Ahmed, a Senior Consultant in Gastrointestinal Surgery, Laparoscopic Surgery, and Bariatric Surgery with over 36 years of experience.",
+        "Dr. Shabeer Ahmed is a renowned specialist in minimally invasive and robotic surgery, dedicated to providing advanced, patient-centered healthcare solutions.",
     keywords:
-        "about dr shabeer ahmed, gastrointestinal surgeon, laparoscopic surgeon, weight loss surgeon, obesity treatment, liver disease specialist, Bangalore",
+        "Dr Shabeer Ahmed, Gastrointestinal Surgeon, Laparoscopic Surgeon, Colorectal Surgeon, Metabolic Surgery"
 };
 
 export default function About() {
@@ -19,15 +18,15 @@ export default function About() {
         <>
             {/* SEO Metadata */}
             <Head>
-                <title>{pageMetadata.title}</title>
-                <meta name="description" content={pageMetadata.description} />
-                <meta name="keywords" content={pageMetadata.keywords} />
+                <title>{metadata.title}</title>
+                <meta name="description" content={metadata.description} />
+                <meta name="keywords" content={metadata.keywords} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="robots" content="index, follow" />
                 <link rel="canonical" href="https://www.drshabeerahmed.com/aboutus" />
                 {/* Open Graph / Social Media SEO */}
-                <meta property="og:title" content={pageMetadata.title} />
-                <meta property="og:description" content={pageMetadata.description} />
+                <meta property="og:title" content={metadata.title} />
+                <meta property="og:description" content={metadata.description} />
                 <meta property="og:image" content="/img/seo/dr-shabeer-ahmed-about.jpg" />
                 <meta property="og:url" content="https://www.drshabeerahmed.com/aboutus" />
                 <meta property="og:type" content="website" />
