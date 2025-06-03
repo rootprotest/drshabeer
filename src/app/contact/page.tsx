@@ -46,7 +46,6 @@ export default function ContactPage() {
             setStatus('An error occurred while sending the message.');
         }
     };
-
     return (
         <>
             <Head>
@@ -128,23 +127,23 @@ export default function ContactPage() {
                                         <div className="row">
                                             <div className="col-md-6 mb-3">
                                                 <label className="form-label">Name</label>
-                                                <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+                                                <input type="text" name="name" className="form-control" value={formData.name} onChange={handleChange} required />
                                             </div>
                                             <div className="col-md-6 mb-3">
                                                 <label className="form-label">Email Address</label>
-                                                <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                                                <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required />
                                             </div>
                                             <div className="col-md-6 mb-3">
                                                 <label className="form-label">Phone Number</label>
-                                                <input type="text" name="phone" value={formData.phone} onChange={handleChange} />
+                                                <input type="text" name="phone" className="form-control" value={formData.phone} onChange={handleChange} />
                                             </div>
                                             <div className="col-md-6 mb-3">
                                                 <label className="form-label">Services</label>
-                                                <input type="text" name="service" value={formData.service} onChange={handleChange} />
+                                                <input type="text" name="service" className="form-control" value={formData.service} onChange={handleChange} />
                                             </div>
                                             <div className="col-md-12 mb-3">
                                                 <label className="form-label">Message</label>
-                                                <textarea name="message" value={formData.message} onChange={handleChange} required></textarea>
+                                                <textarea name="message" className="form-control" value={formData.message} onChange={handleChange} required></textarea>
                                             </div>
                                             <div className="col-md-12">
                                                 <button type="submit" className="btn btn-primary prime-btn w-100">Send Message</button>
