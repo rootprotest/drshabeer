@@ -29,6 +29,7 @@ const items = [
     { img: '/img/icons/Gallstones.webp', alt: 'Gallstones', title: 'Gallstones', link: 'gallstones-treatments' },
     { img: '/img/icons/piles.webp', alt: 'Piles', title: 'Piles', link: 'piles-treatment-in-bangalore' },
     { img: '/img/icons/Reflux Disease.webp', alt: 'Gastroesophageal Reflux Disease', title: 'Gastroesophageal Reflux Disease', link: 'gastroesophageal' },
+    { img: '/img/icons/Laparoscopic.svg', alt: 'Laparoscopic', title: 'Laparoscopic', link: 'laparoscopic-surgeon-in-bangalore' },
 ];
 
 const GutHealthLibrary = () => {
@@ -93,3 +94,5 @@ const GutHealthLibrary = () => {
 };
 
 export default GutHealthLibrary;
+
+

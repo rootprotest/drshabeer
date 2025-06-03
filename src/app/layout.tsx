@@ -20,12 +20,12 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
+/*
 export const metadata: Metadata = {
   title: "Dr Shabeer Ahmed | Gastrointestinal & Laparoscopic Surgeon",
   description: "Dr. Shabeer Ahmed is a renowned Gastrointestinal and Laparoscopic Surgeon, specializing in advanced minimally invasive procedures with exceptional patient care.",
   keywords: "Dr Shabeer Ahmed, Gastrointestinal Surgeon, Laparoscopic Surgeon, Colorectal Surgeon, Metabolic Surgery",
-};
+};*/
 
 export default function RootLayout({
   children,
