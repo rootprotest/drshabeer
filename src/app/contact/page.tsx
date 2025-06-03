@@ -2,6 +2,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ChangeEvent } from 'react';
 import BariatricBanner from '@/components/BreadcrumbBanner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapPin, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -18,13 +19,13 @@ export default function ContactPage() {
 
     const [status, setStatus] = useState('');
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         e.preventDefault();
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus('Sending...');
 
