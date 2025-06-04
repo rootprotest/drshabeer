@@ -6,6 +6,7 @@ import { ChangeEvent } from 'react';
 import BariatricBanner from '@/components/BreadcrumbBanner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapPin, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import Select from 'react-select';
 import Head from 'next/head';
 
 export default function ContactPage() {
@@ -19,10 +20,43 @@ export default function ContactPage() {
 
     const [status, setStatus] = useState('');
 
+    const services = [
+        { label: 'Diarrhea', value: 'Diarrhea' },
+        { label: 'Gastritis', value: 'Gastritis' },
+        { label: 'Bariatric Surgery', value: 'Bariatric Surgery' },
+        { label: 'Obesity', value: 'Obesity' },
+        { label: 'Laser Surgery', value: 'Laser Surgery' },
+        { label: 'Gastric Balloon', value: 'Gastric Balloon' },
+        { label: 'Rectal Bleeding', value: 'Rectal Bleeding' },
+        { label: 'Endoscopic Surgery', value: 'Endoscopic Surgery' },
+        { label: 'Incisional Hernia', value: 'Incisional Hernia' },
+        { label: 'Inguinal Hernia', value: 'Inguinal Hernia' },
+        { label: 'Anal Fissure, Anal Fistula', value: 'Anal Fissure, Anal Fistula' },
+        { label: 'Abdominal Pain', value: 'Abdominal Pain' },
+        { label: 'Surgery For Reflux Disease', value: 'refluxSurgery For Reflux Disease' },
+        { label: 'Irritable Bowel Syndrome', value: 'Irritable Bowel Syndrome' },
+        { label: 'Cancer Treatment', value: 'Cancer Treatment' },
+        { label: 'Stem Cell Therapy', value: 'Stem Cell Therapy' },
+        { label: 'Robotic Surgery', value: 'Robotic Surgery' },
+        { label: 'Gallstones', value: 'Gallstones' },
+        { label: 'Piles', value: 'Piles' },
+        { label: 'Gastroesophageal Reflux Disease', value: 'Gastroesophageal Reflux Disease' },
+        { label: 'Laparoscopic Surgery', value: 'Laparoscopic Surgery' }
+    ];
+
+    const serviceOptions = services.map(item => ({
+        value: item.value,
+        label: item.label
+    }));
+
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         e.preventDefault();
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSelectChange = (selectedOption: any) => {
+        setFormData(prev => ({ ...prev, service: selectedOption?.value || '' }));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -140,7 +174,15 @@ export default function ContactPage() {
                                             </div>
                                             <div className="col-md-6 mb-3">
                                                 <label className="form-label">Services</label>
-                                                <input type="text" name="service" className="form-control" value={formData.service} onChange={handleChange} />
+                                                <Select
+                                                    name="service"
+                                                    options={serviceOptions}
+                                                    value={serviceOptions.find(opt => opt.value === formData.service) || null}
+                                                    onChange={handleSelectChange}
+                                                    placeholder="Select Service..."
+                                                    isSearchable
+                                                    required
+                                                />
                                             </div>
                                             <div className="col-md-12 mb-3">
                                                 <label className="form-label">Message</label>

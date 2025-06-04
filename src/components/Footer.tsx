@@ -65,7 +65,7 @@ const Footer = () => {
                                 <h2 className="footer-title">Team of Expertise</h2>
                                 <ul>
                                     <li><Link href="/aboutus">Dr. Shabeer Ahmed</Link></li>
-                                    <li><Link href="/about">Dr. Meghnad G. Joshi</Link></li>
+                                    <li><Link href="/aboutus">Dr. Meghnad G. Joshi</Link></li>
                                 </ul>
                             </div>
                         </div>
