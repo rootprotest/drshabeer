@@ -2,7 +2,13 @@
 import axios from 'axios';
 import { notFound } from 'next/navigation';
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
+type BlogPostPageProps = {
+    params: {
+        slug: string;
+    };
+};
+
+export default async function BlogPost({ params }: BlogPostPageProps) {
     try {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_SITE_URL}/api/posts?slug=${params.slug}`);
         const post = res.data;
