@@ -6,7 +6,7 @@ type Props = {
     params: { slug: string };
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props) {
     return {
         title: `Blog - ${params.slug}`,
     };
