@@ -63447,3 +63447,13 @@ ul li {
 li strong {
   color: #6B7280;
 }
+
+.read-more-tes svg {
+  width: 15px;
+}
+
+.tipTapEditor .ProseMirror {
+  outline: none;
+  min-height: 200px;
+  padding: 10px;
+}
