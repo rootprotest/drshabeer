@@ -1,14 +1,18 @@
-// src/app/blogs/[slug]/page.tsx
-import axios from 'axios';
 import { notFound } from 'next/navigation';
+import axios from 'axios';
+import { Metadata } from 'next';
 
-type BlogPostPageProps = {
-    params: {
-        slug: string;
-    };
+type Props = {
+    params: { slug: string };
 };
 
-export default async function BlogPost({ params }: BlogPostPageProps) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    return {
+        title: `Blog - ${params.slug}`,
+    };
+}
+
+export default async function BlogPost({ params }: Props) {
     try {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_SITE_URL}/api/posts?slug=${params.slug}`);
         const post = res.data;
