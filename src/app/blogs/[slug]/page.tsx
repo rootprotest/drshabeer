@@ -2,19 +2,17 @@ import { notFound } from 'next/navigation';
 import axios from 'axios';
 import { Metadata } from 'next';
 
-type Props = {
-    params: { slug: string };
+
+export type BlogPostProps = {
+    params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata({ params }: Props) {
-    return {
-        title: `Blog - ${params.slug}`,
-    };
-}
+export default async function BlogPost({ params }: BlogPostProps) {
 
-export default async function BlogPost({ params }: Props) {
+    const { slug } = await params;
+
     try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_SITE_URL}/api/posts?slug=${params.slug}`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_SITE_URL}/api/posts?slug=${slug}`);
         const post = res.data;
 
         if (!post) return notFound();
