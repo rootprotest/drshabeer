@@ -94,7 +94,7 @@ export default async function BlogPage() {
                                                 </Link>
                                             </h3>
                                             <p className="mb-0 text-truncate-2-lines">
-                                                {post.excerpt || post.content.substring(0, 100)}...
+                                                {post.excerpt || post.content.replace(/<[^>]+>/g, '').substring(0, 100)}...
                                             </p>
                                             <Link href={`/blogs/${post.slug}`} className="btn btn-link mt-2 p-0 text-primary">
                                                 Read More

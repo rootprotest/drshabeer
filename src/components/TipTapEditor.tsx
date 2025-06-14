@@ -3,6 +3,7 @@
 
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import { useMemo, useEffect } from 'react'
 import Toolbar from './Toolbar'
 
 interface Props {
@@ -10,21 +11,32 @@ interface Props {
     onChange: (content: string) => void
 }
 
-export default function TipTapEditor({ content, onChange }: Props) {
+function Editor({ content, onChange }: Props) {
     const editor = useEditor({
         extensions: [StarterKit],
-        content,
+        content: content || '',
         onUpdate: ({ editor }) => {
             onChange(editor.getHTML())
         },
     })
 
+    // Automatically update editor content when props.content changes
+    useEffect(() => {
+        if (editor && content) {
+            editor.commands.setContent(content, false)
+        }
+    }, [content, editor])
+
     return (
         <div className="tipTapEditor border rounded p-2 bg-white">
             <Toolbar editor={editor} />
-            <div className="form-control p-0 border-0 min-h-[200px]">
-                <EditorContent editor={editor} />
-            </div>
+            <EditorContent editor={editor} />
         </div>
     )
 }
+
+const TipTapEditor = ({ content, onChange }: Props) => {
+    return <Editor content={content} onChange={onChange} />
+}
+
+export default TipTapEditor

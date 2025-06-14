@@ -20,20 +20,10 @@ export default function Header() {
                             <div className="dropdown-content">
                                 <Link href="/">Home</Link>
                                 <Link href="/aboutus">About us</Link>
-                                <Link href="/news">News & updates</Link>
+                                <Link href="/news-updates">News & updates</Link>
                                 <Link href="/contact">Contact us</Link>
                             </div>
                         )}
-                    </div>
-
-                    <div className="navbar-header">
-                        <a id="mobile_btn" href="javascript:void(0);" className="mobile-menu-btn">
-                            <span className="bar-icon">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </a>
                     </div>
 
                     <div className="main-menu-wrapper">

@@ -32,7 +32,7 @@ const BannerSection = () => {
                   Our comprehensive approach integrates various specialties to provide you with the most effective
                   and personalized care for your gastrointestinal needs.
                 </p>
-                <Link href="/introducing" data-aos="fade-up">
+                <Link href="/united-gut-healthcare" data-aos="fade-up">
                   <button className="btn btn-primary read-more-tes">
                     Read More <FontAwesomeIcon icon={faChevronRight} />
                   </button>

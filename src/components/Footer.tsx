@@ -76,8 +76,8 @@ const Footer = () => {
                                 <h2 className="footer-title">Company</h2>
                                 <ul>
                                     <li><Link href="/aboutus">About Us</Link></li>
-                                    <li><Link href="/aboutus">News & Events</Link></li>
-                                    <li><Link href="/aboutus">Blogs and Announcement</Link></li>
+                                    <li><Link href="/news-updates">News & Events</Link></li>
+                                    <li><Link href="/blogs">Blogs and Announcement</Link></li>
                                     <li><Link href="/aboutus">Videos, Reels, Testimonial</Link></li>
                                     <li><Link href="/aboutus">Symptomatic Checker</Link></li>
                                     <li><Link href="/aboutus">Quizzes</Link></li>

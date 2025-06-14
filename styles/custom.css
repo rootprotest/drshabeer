@@ -50599,7 +50599,7 @@ ul.benifits-col li i {
 
 @media (max-width: 991.98px) {
   .breadcrumb-bar-two {
-    padding-top: 40px;
+    padding-top: 56px;
     min-height: 260px;
   }
 }
@@ -63305,16 +63305,32 @@ ul li {
 }
 
 /* Container that holds the button fixed to the right */
-.side-content-container {
-  position: fixed;
-  right: -5%;
-  top: 60%;
-  transform: translateY(-50%);
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+@media (max-width: 768px) {
+  .side-content-container {
+    position: fixed;
+    right: -21%;
+    top: 60%;
+    transform: translateY(-50%);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .side-content-container {
+    position: fixed;
+    right: -5%;
+    top: 60%;
+    transform: translateY(-50%);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 /* Button styles */
