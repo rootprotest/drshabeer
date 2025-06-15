@@ -2,16 +2,14 @@ import { connectDB } from '@/lib/connectDB';
 import Post from '@/modal/Post';
 import { NextRequest, NextResponse } from 'next/server';
 
-type Context = {
-    params: {
-        id: string;
-    };
-};
-
-export async function DELETE(req: NextRequest, context: Context) {
+// Correct type for the second argument
+export async function DELETE(
+    req: NextRequest,
+    { params }: { params: { id: string } }
+) {
     await connectDB();
 
-    const { id } = context.params;
+    const { id } = params;
 
     if (!id || id === 'undefined') {
         return new NextResponse(JSON.stringify({ message: 'Invalid ID' }), {
