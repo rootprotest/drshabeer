@@ -1,14 +1,20 @@
 import { connectDB } from '@/lib/connectDB';
 import Post from '@/modal/Post';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+type Context = {
+    params: {
+        id: string;
+    };
+};
+
+export async function DELETE(req: NextRequest, context: Context) {
     await connectDB();
 
-    const id = params.id;
+    const { id } = context.params;
 
     if (!id || id === 'undefined') {
-        return new Response(JSON.stringify({ message: 'Invalid ID' }), {
+        return new NextResponse(JSON.stringify({ message: 'Invalid ID' }), {
             status: 400,
             headers: { 'Content-Type': 'application/json' },
         });
@@ -18,20 +24,19 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
         const deletedPost = await Post.findByIdAndDelete(id);
 
         if (!deletedPost) {
-            return new Response(JSON.stringify({ message: 'Post not found' }), {
+            return new NextResponse(JSON.stringify({ message: 'Post not found' }), {
                 status: 404,
                 headers: { 'Content-Type': 'application/json' },
             });
         }
 
-        return new Response(JSON.stringify({ message: 'Post deleted successfully' }), {
+        return new NextResponse(JSON.stringify({ message: 'Post deleted successfully' }), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },
         });
-
     } catch (error) {
         console.error('DELETE /api/posts/[id] error:', error);
-        return new Response(JSON.stringify({ message: 'Failed to delete post' }), {
+        return new NextResponse(JSON.stringify({ message: 'Failed to delete post' }), {
             status: 500,
             headers: { 'Content-Type': 'application/json' },
         });
