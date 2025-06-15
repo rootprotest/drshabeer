@@ -1,57 +1,52 @@
-// app/blog/page.tsx
-import React from 'react';
+'use client'
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import Head from 'next/head';
 import Image from 'next/image';
 import BariatricBanner from '@/components/BreadcrumbBanner';
 
-export const metadata = {
-    title: "Blog - Dr. Shabeer Ahmed | Gastroenterologist in Bangalore",
-    description:
-        "Explore insightful articles on gastrointestinal health, treatments, and expert advice by Dr. Shabeer Ahmed, a leading gastroenterologist in Bangalore.",
-    keywords:
-        "gastro blog, dr shabeer blog, digestive health blog, Bangalore gastro blog",
-};
+export default function BlogPage() {
+    const [posts, setPosts] = useState([]);
 
-export default async function BlogPage() {
-    let posts = [];
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const res = await axios.get('/api/posts');
+                setPosts(res.data);
+            } catch (error) {
+                console.error('Failed to fetch blog posts:', error);
+            }
+        };
 
-    try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_SITE_URL}/api/posts`);
-        posts = res.data;
-    } catch (error) {
-        console.error('Failed to fetch blog posts:', error);
-    }
-
-    // Generate blog URLs for OG tags
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://drshabeer.vercel.app';
-    const blogUrl = `${siteUrl}/blog`;
+        fetchPosts();
+    }, []);
 
     return (
         <>
             <Head>
                 {/* Basic SEO */}
-                <title>{metadata.title}</title>
-                <meta name="description" content={metadata.description} />
-                <meta name="keywords" content={metadata.keywords} />
+                <title>Blog - Dr. Shabeer Ahmed | Gastroenterologist in Bangalore</title>
+                <meta name="description" content="Explore insightful articles on gastrointestinal health, treatments, and expert advice by Dr. Shabeer Ahmed, a leading gastroenterologist in Bangalore." />
+                <meta name="keywords" content="gastro blog, dr shabeer blog, digestive health blog, Bangalore gastro blog" />
 
-                {/* Open Graph (Facebook, LinkedIn, etc.) */}
-                <meta property="og:title" content={metadata.title} />
-                <meta property="og:description" content={metadata.description} />
+                {/* Open Graph */}
+                <meta property="og:title" content="Blog - Dr. Shabeer Ahmed" />
+                <meta property="og:description" content="Explore insightful articles on gastrointestinal health, treatments, and expert advice by Dr. Shabeer Ahmed." />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content={blogUrl} />
-                <meta property="og:image" content={`${siteUrl}/img/seo/blog-og-image.jpg`} />
+                <meta property="og:url" content="/blog" />
+                <meta property="og:image" content="/img/seo/blog-og-image.jpg" />
 
                 {/* Twitter Card */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={metadata.title} />
-                <meta name="twitter:description" content={metadata.description} />
-                <meta name="twitter:image" content={`${siteUrl}/img/seo/blog-og-image.jpg`} />
+                <meta name="twitter:title" content="Blog - Dr. Shabeer Ahmed" />
+                <meta name="twitter:description" content="Explore insightful articles on gastrointestinal health." />
+                <meta name="twitter:image" content="/img/seo/blog-og-image.jpg" />
                 <meta name="twitter:site" content="@drshabeergastro" />
 
                 {/* Canonical URL */}
-                <link rel="canonical" href={blogUrl} />
+                <link rel="canonical" href="/blog" />
             </Head>
 
             {/* Banner Section */}
@@ -64,8 +59,7 @@ export default async function BlogPage() {
                 <div className="row blog-grid-row">
                     {posts.length > 0 ? (
                         posts.map((post: any) => {
-                            const postUrl = `${siteUrl}/blog/${post.slug}`;
-                            const imageUrl = post.imageUrl.startsWith('http') ? post.imageUrl : `${siteUrl}${post.imageUrl}`;
+                            const imageUrl = post.imageUrl || "/img/placeholder.jpg";
 
                             return (
                                 <div key={post._id} className="col-md-4 col-sm-12 mb-4">
@@ -96,32 +90,12 @@ export default async function BlogPage() {
                                             <p className="mb-0 text-truncate-2-lines">
                                                 {post.excerpt || post.content.replace(/<[^>]+>/g, '').substring(0, 100)}...
                                             </p>
-                                            <Link href={`/blogs/${post.slug}`} className="btn btn-link mt-2 p-0 text-primary">
+                                            <Link href={`/blog/${post.slug}`} className="btn btn-link mt-2 p-0 text-primary">
                                                 Read More
                                             </Link>
                                         </div>
                                     </div>
                                     {/* /Blog Post */}
-
-                                    {/* Structured Data */}
-                                    <script
-                                        type="application/ld+json"
-                                        dangerouslySetInnerHTML={{
-                                            __html: JSON.stringify({
-                                                '@context': 'https://schema.org',
-                                                '@type': 'BlogPosting',
-                                                headline: post.title,
-                                                description: post.excerpt || post.content.substring(0, 160),
-                                                image: imageUrl,
-                                                datePublished: new Date(post.date).toISOString(),
-                                                url: postUrl,
-                                                author: {
-                                                    '@type': 'Person',
-                                                    name: post.author || 'Dr. Shabeer Ahmed',
-                                                },
-                                            }),
-                                        }}
-                                    />
                                 </div>
                             );
                         })
@@ -141,25 +115,17 @@ export default async function BlogPage() {
                                 Previous
                             </Link>
                         </li>
-                        <li className="page-item">
-                            <Link className="page-link" href="#">
-                                1
-                            </Link>
-                        </li>
                         <li className="page-item active">
-                            <Link className="page-link" href="#">
-                                2
-                            </Link>
+                            <Link className="page-link" href="#">1</Link>
                         </li>
                         <li className="page-item">
-                            <Link className="page-link" href="#">
-                                3
-                            </Link>
+                            <Link className="page-link" href="#">2</Link>
                         </li>
                         <li className="page-item">
-                            <Link className="page-link" href="#">
-                                Next
-                            </Link>
+                            <Link className="page-link" href="#">3</Link>
+                        </li>
+                        <li className="page-item">
+                            <Link className="page-link" href="#">Next</Link>
                         </li>
                     </ul>
                 </nav>

@@ -13,47 +13,31 @@ export async function GET(req: NextRequest) {
     const id = searchParams.get('id');
 
     try {
+        let post;
+
         if (slug) {
-            const post = await Post.findOne({ slug });
-            if (!post) {
-                return new Response(JSON.stringify({ message: 'Post not found' }), {
-                    status: 404,
-                    headers: { 'Content-Type': 'application/json' },
-                });
-            }
-            return new Response(JSON.stringify(post), {
-                status: 200,
-                headers: { 'Content-Type': 'application/json' },
-            });
-
+            post = await Post.findOne({ slug });
         } else if (id) {
-            const post = await Post.findById(id);
-            if (!post) {
-                return new Response(JSON.stringify({ message: 'Post not found' }), {
-                    status: 404,
-                    headers: { 'Content-Type': 'application/json' },
-                });
-            }
-            return new Response(JSON.stringify(post), {
-                status: 200,
-                headers: { 'Content-Type': 'application/json' },
-            });
-
+            post = await Post.findById(id);
         } else {
-            // Fetch all posts
-            const posts = await Post.find().sort({ date: -1 });
-            return new Response(JSON.stringify(posts), {
-                status: 200,
-                headers: { 'Content-Type': 'application/json' },
-            });
+            post = await Post.find().sort({ date: -1 }); // Get all posts
         }
+
+        if (!post) {
+            return new Response(
+                JSON.stringify({ message: 'Post not found' }),
+                { status: 404 }
+            );
+        }
+
+        return new Response(JSON.stringify(post), { status: 200 });
 
     } catch (error) {
         console.error('GET /api/posts error:', error);
-        return new Response(JSON.stringify({ message: 'Internal Server Error' }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        return new Response(
+            JSON.stringify({ message: 'Internal Server Error' }),
+            { status: 500 }
+        );
     }
 }
 
