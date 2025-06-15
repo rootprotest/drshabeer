@@ -25,7 +25,7 @@ export default async function BlogPage() {
     }
 
     // Generate blog URLs for OG tags
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://drshabeer.vercel.app';
     const blogUrl = `${siteUrl}/blog`;
 
     return (
