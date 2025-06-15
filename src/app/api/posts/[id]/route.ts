@@ -2,41 +2,45 @@ import { connectDB } from '@/lib/connectDB';
 import Post from '@/modal/Post';
 import { NextRequest, NextResponse } from 'next/server';
 
-// Correct type for the second argument
-export async function DELETE(
-    req: NextRequest,
-    { params }: { params: { id: string } }
-) {
-    await connectDB();
+// Define type for params
+export type BlogPostProps = {
+    params: Promise<{ id: string }>;
+};
 
-    const { id } = params;
-
-    if (!id || id === 'undefined') {
-        return new NextResponse(JSON.stringify({ message: 'Invalid ID' }), {
-            status: 400,
-            headers: { 'Content-Type': 'application/json' },
-        });
-    }
-
+// Correctly typed DELETE handler
+export async function DELETE(req: NextRequest, { params }: BlogPostProps): Promise<NextResponse> {
     try {
+        // Connect to DB
+        await connectDB();
+
+        const { id } = await params;
+
+        if (!id || id === 'undefined') {
+            return NextResponse.json(
+                { message: 'Invalid ID' },
+                { status: 400 }
+            );
+        }
+
+        // Find and delete post
         const deletedPost = await Post.findByIdAndDelete(id);
 
         if (!deletedPost) {
-            return new NextResponse(JSON.stringify({ message: 'Post not found' }), {
-                status: 404,
-                headers: { 'Content-Type': 'application/json' },
-            });
+            return NextResponse.json(
+                { message: 'Post not found' },
+                { status: 404 }
+            );
         }
 
-        return new NextResponse(JSON.stringify({ message: 'Post deleted successfully' }), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        return NextResponse.json(
+            { message: 'Post deleted successfully' },
+            { status: 200 }
+        );
     } catch (error) {
         console.error('DELETE /api/posts/[id] error:', error);
-        return new NextResponse(JSON.stringify({ message: 'Failed to delete post' }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        return NextResponse.json(
+            { message: 'Failed to delete post' },
+            { status: 500 }
+        );
     }
 }
