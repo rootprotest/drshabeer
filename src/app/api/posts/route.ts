@@ -171,11 +171,10 @@ export async function PUT(req: NextRequest) {
 }
 
 // DELETE /api/posts?id=...
-export async function DELETE(req: NextRequest) {
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
     await connectDB();
 
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get('id');
+    const { id } = params;
 
     if (!id || id === 'undefined') {
         return new Response(JSON.stringify({ message: 'Invalid ID' }), {
@@ -200,7 +199,7 @@ export async function DELETE(req: NextRequest) {
         });
 
     } catch (error) {
-        console.error('DELETE /api/posts error:', error);
+        console.error('DELETE /api/posts/[id] error:', error);
         return new Response(JSON.stringify({ message: 'Failed to delete post' }), {
             status: 500,
             headers: { 'Content-Type': 'application/json' },
