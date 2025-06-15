@@ -83,14 +83,14 @@ export default function BlogPage() {
                                                 </li>
                                             </ul>
                                             <h3 className="blog-title h5">
-                                                <Link href={`/blog/${post.slug}`} className="text-decoration-none text-dark fw-bold">
+                                                <Link href={`/blogs/${post.slug}`} className="text-decoration-none text-dark fw-bold">
                                                     {post.title}
                                                 </Link>
                                             </h3>
                                             <p className="mb-0 text-truncate-2-lines">
                                                 {post.excerpt || post.content.replace(/<[^>]+>/g, '').substring(0, 100)}...
                                             </p>
-                                            <Link href={`/blog/${post.slug}`} className="btn btn-link mt-2 p-0 text-primary">
+                                            <Link href={`/blogs/${post.slug}`} className="btn btn-link mt-2 p-0 text-primary">
                                                 Read More
                                             </Link>
                                         </div>
