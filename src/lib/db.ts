@@ -4,6 +4,13 @@ import Page from '@/modal/Page';
 
 export const getPageBySlug = async (slug: string) => {
     await connectDB();
-    // lean() use karne se sirf plain JS object milta hai
-    return await Page.findOne({ slug }).lean();
+
+    const page = await Page.findOne({ slug }).lean();
+
+    if (!page) {
+        console.warn(`No page found for slug: ${slug}`);
+        return null;
+    }
+
+    return page;
 };

@@ -1,4 +1,5 @@
 // src/app/[slug]/page.tsx
+'use client'
 import { getPageBySlug } from '@/lib/db';
 import BariatricBanner from '@/components/BreadcrumbBanner';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -24,9 +25,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return {
-        title: page?.title || 'Page',
-        description: page?.description || 'No description available',
-        keywords: page?.keywords || '',
+        title: (page as any)?.title || 'Page',
+        description: (page as any)?.description || 'No description available',
+        keywords: (page as any)?.keywords || '',
     };
 }
 
