@@ -3,6 +3,15 @@
 import React, { useState } from 'react';
 import TipTapEditor from '@/components/TipTapEditor';
 
+
+interface Faq {
+    question: string;
+    answer: string;
+}
+
+type FaqKeys = keyof Faq;
+
+
 export default function AdminPage() {
     const [formData, setFormData] = useState({
         title: '',
@@ -27,7 +36,7 @@ export default function AdminPage() {
     };
 
     // Handle FAQ changes
-    const handleFaqChange = (index: number, field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFaqChange = (index: number, field: FaqKeys) => (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         const updatedFaqs = [...formData.faqs];
         updatedFaqs[index][field] = value;
