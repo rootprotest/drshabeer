@@ -1,5 +1,4 @@
 // src/app/[slug]/page.tsx
-'use client'
 import { getPageBySlug } from '@/lib/db';
 import BariatricBanner from '@/components/BreadcrumbBanner';
 import { Container, Row, Col } from 'react-bootstrap';
