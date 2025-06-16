@@ -15,21 +15,26 @@ export default function AdminPage() {
         faqs: [{ question: '', answer: '' }]
     });
 
-    const handleChange = (e) => {
+    // Handle normal input changes
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleEditorChange = (html, field) => {
+    // Handle TipTap editor changes
+    const handleEditorChange = (html: string, field: string) => {
         setFormData(prev => ({ ...prev, [field]: html }));
     };
 
-    const handleFaqChange = (index, field, value) => {
+    // Handle FAQ changes
+    const handleFaqChange = (index: number, field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
         const updatedFaqs = [...formData.faqs];
         updatedFaqs[index][field] = value;
         setFormData({ ...formData, faqs: updatedFaqs });
     };
 
+    // Add new FAQ item
     const addFaq = () => {
         setFormData({
             ...formData,
@@ -37,12 +42,12 @@ export default function AdminPage() {
         });
     };
 
-    const handleSubmit = async (e) => {
+    // Submit handler
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const formDataToSend = new FormData();
 
-        // Text fields
         for (const key in formData) {
             if (key === 'faqs') {
                 formDataToSend.append(key, JSON.stringify(formData[key]));
@@ -51,15 +56,14 @@ export default function AdminPage() {
             }
         }
 
-        // Image fields
         const bannerImageInput = document.querySelector('input[name="bannerImage"]') as HTMLInputElement;
         const contentImageInput = document.querySelector('input[name="contentImage"]') as HTMLInputElement;
 
-        if (bannerImageInput.files && bannerImageInput.files[0]) {
+        if (bannerImageInput.files?.[0]) {
             formDataToSend.append("bannerImage", bannerImageInput.files[0]);
         }
 
-        if (contentImageInput.files && contentImageInput.files[0]) {
+        if (contentImageInput.files?.[0]) {
             formDataToSend.append("contentImage", contentImageInput.files[0]);
         }
 
@@ -119,13 +123,19 @@ export default function AdminPage() {
                 {/* Introduction */}
                 <div className="mb-3">
                     <label>Introduction</label>
-                    <TipTapEditor content={formData.introduction} onChange={(html) => handleEditorChange(html, 'introduction')} />
+                    <TipTapEditor
+                        content={formData.introduction}
+                        onChange={(html) => handleEditorChange(html, 'introduction')}
+                    />
                 </div>
 
                 {/* Full Content */}
                 <div className="mb-3">
                     <label>Full Content</label>
-                    <TipTapEditor content={formData.fullintroduction} onChange={(html) => handleEditorChange(html, 'fullintroduction')} />
+                    <TipTapEditor
+                        content={formData.fullintroduction}
+                        onChange={(html) => handleEditorChange(html, 'fullintroduction')}
+                    />
                 </div>
 
                 {/* FAQs */}
@@ -139,7 +149,7 @@ export default function AdminPage() {
                                     placeholder="Question"
                                     className="form-control"
                                     value={faq.question}
-                                    onChange={(e) => handleFaqChange(index, 'question', e.target.value)}
+                                    onChange={handleFaqChange(index, 'question')}
                                 />
                             </div>
                             <div className="mb-2">
@@ -148,7 +158,7 @@ export default function AdminPage() {
                                     placeholder="Answer"
                                     className="form-control"
                                     value={faq.answer}
-                                    onChange={(e) => handleFaqChange(index, 'answer', e.target.value)}
+                                    onChange={handleFaqChange(index, 'answer')}
                                 />
                             </div>
                         </div>
