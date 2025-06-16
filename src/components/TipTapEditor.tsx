@@ -1,10 +1,10 @@
-// src/components/TipTapEditor.tsx
+// components/TipTapEditor.tsx
 'use client'
 
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { useMemo, useEffect } from 'react'
 import Toolbar from './Toolbar'
+import { useEffect } from 'react'
 
 interface Props {
     content: string
@@ -20,7 +20,6 @@ function Editor({ content, onChange }: Props) {
         },
     })
 
-    // Automatically update editor content when props.content changes
     useEffect(() => {
         if (editor && content) {
             editor.commands.setContent(content, false)

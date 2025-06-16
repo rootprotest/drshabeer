@@ -37,7 +37,7 @@ export default function Header() {
                         </div>
                         <ul className="main-nav">
                             <li>
-                                <Link href="/" className="navbar-brand logo mx-50">
+                                <Link href="/" className="navbar-brand logo mx-100">
                                     <Image src={logo} alt="Logo" className="img-fluid" />
                                 </Link>
                             </li>

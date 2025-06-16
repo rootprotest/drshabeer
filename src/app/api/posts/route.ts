@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
 
         if (image) {
             const buffer = Buffer.from(await image.arrayBuffer());
-            const result: any = await uploadToCloudinary(buffer);
+            const result: any = await uploadToCloudinary(buffer, 'blogs');
             imageUrl = result.secure_url; // Cloudinary se mila URL
         }
 

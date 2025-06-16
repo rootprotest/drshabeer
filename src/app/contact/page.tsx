@@ -1,8 +1,7 @@
 // app/contact/page.tsx
 'use client';
 
-import { useState } from 'react';
-import { ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import BariatricBanner from '@/components/BreadcrumbBanner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapPin, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';

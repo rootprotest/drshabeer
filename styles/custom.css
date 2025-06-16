@@ -6816,7 +6816,7 @@ th.table-head-days {
 
 @media (min-width: 992px) {
   .header-one .main-menu-wrapper .main-nav>li>a {
-    padding: 23px 0 28px !important;
+    padding: 10px 0 28px !important;
     line-height: normal;
   }
 }
