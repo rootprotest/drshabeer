@@ -16,7 +16,7 @@ const faqs = [
     {
         question: '3. What are the risks associated with bariatric surgery?',
         answer:
-            'Common risks include infection, blood clots, and nutritional deficiencies. It’s important to follow post-surgery care instructions closely to minimize these risks and ensure a smooth recovery.',
+            'Common risks include infection, blood clots, and nutritional deficiencies. Its important to follow post-surgery care instructions closely to minimize these risks and ensure a smooth recovery.',
     },
 ];
 

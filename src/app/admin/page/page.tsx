@@ -11,6 +11,17 @@ interface Faq {
 
 type FaqKeys = keyof Faq;
 
+interface FormDataType {
+    title: string;
+    description: string;
+    keywords: string;
+    slug: string;
+    bannerTitle: string;
+    introduction: string;
+    fullintroduction: string;
+    faqs: Faq[];
+}
+
 
 export default function AdminPage() {
     const [formData, setFormData] = useState({
@@ -58,10 +69,15 @@ export default function AdminPage() {
         const formDataToSend = new FormData();
 
         for (const key in formData) {
+            if (!Object.prototype.hasOwnProperty.call(formData, key)) continue;
+
+            const keyTyped = key as keyof FormDataType;
+            const value = (formData as Record<keyof FormDataType, any>)[keyTyped];
+
             if (key === 'faqs') {
-                formDataToSend.append(key, JSON.stringify(formData[key]));
+                formDataToSend.append(key, JSON.stringify(value));
             } else {
-                formDataToSend.append(key, formData[key]);
+                formDataToSend.append(key, value);
             }
         }
 
