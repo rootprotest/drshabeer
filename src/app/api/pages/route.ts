@@ -4,6 +4,27 @@ import Page from '@/modal/Page';
 import { uploadToCloudinary } from '@/lib/utils/cloudinary';
 import { NextRequest } from 'next/server';
 
+
+export async function GET() {
+    try {
+        await connectDB();
+        const pages = await Page.find().select('title slug').lean();
+
+        return new Response(JSON.stringify(pages), {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching pages:', error);
+        return new Response(
+            JSON.stringify({ message: 'Server Error', error }),
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
+    }
+}
+
 export async function POST(req: NextRequest) {
     try {
         await connectDB();

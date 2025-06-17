@@ -1,198 +1,162 @@
-// src/app/admin/page/page.tsx
+// src/app/admin/pages/page.tsx
 'use client'
-import React, { useState } from 'react';
-import TipTapEditor from '@/components/TipTapEditor';
 
+import React, { useEffect, useState } from 'react';
+import BariatricBanner from '@/components/BreadcrumbBanner';
+import Link from 'next/link';
 
-interface Faq {
-    question: string;
-    answer: string;
-}
+export default function PageList() {
+    const [pages, setPages] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState('');
 
-type FaqKeys = keyof Faq;
-
-interface FormDataType {
-    title: string;
-    description: string;
-    keywords: string;
-    slug: string;
-    bannerTitle: string;
-    introduction: string;
-    fullintroduction: string;
-    faqs: Faq[];
-}
-
-
-export default function AdminPage() {
-    const [formData, setFormData] = useState({
-        title: '',
-        description: '',
-        keywords: '',
-        slug: '',
-        bannerTitle: '',
-        introduction: '',
-        fullintroduction: '',
-        faqs: [{ question: '', answer: '' }]
-    });
-
-    // Handle normal input changes
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    };
-
-    // Handle TipTap editor changes
-    const handleEditorChange = (html: string, field: string) => {
-        setFormData(prev => ({ ...prev, [field]: html }));
-    };
-
-    // Handle FAQ changes
-    const handleFaqChange = (index: number, field: FaqKeys) => (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        const updatedFaqs = [...formData.faqs];
-        updatedFaqs[index][field] = value;
-        setFormData({ ...formData, faqs: updatedFaqs });
-    };
-
-    // Add new FAQ item
-    const addFaq = () => {
-        setFormData({
-            ...formData,
-            faqs: [...formData.faqs, { question: '', answer: '' }]
-        });
-    };
-
-    // Submit handler
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        const formDataToSend = new FormData();
-
-        for (const key in formData) {
-            if (!Object.prototype.hasOwnProperty.call(formData, key)) continue;
-
-            const keyTyped = key as keyof FormDataType;
-            const value = (formData as Record<keyof FormDataType, any>)[keyTyped];
-
-            if (key === 'faqs') {
-                formDataToSend.append(key, JSON.stringify(value));
-            } else {
-                formDataToSend.append(key, value);
+    // Fetch all pages from API
+    useEffect(() => {
+        const fetchPages = async () => {
+            try {
+                const res = await fetch('/api/pages');
+                const data = await res.json();
+                setPages(data);
+            } catch (error) {
+                console.error('Failed to fetch pages:', error);
+            } finally {
+                setLoading(false);
             }
-        }
+        };
 
-        const bannerImageInput = document.querySelector('input[name="bannerImage"]') as HTMLInputElement;
-        const contentImageInput = document.querySelector('input[name="contentImage"]') as HTMLInputElement;
+        fetchPages();
+    }, []);
 
-        if (bannerImageInput.files?.[0]) {
-            formDataToSend.append("bannerImage", bannerImageInput.files[0]);
-        }
+    // Handle delete action
+    const handleDelete = async (slug: string) => {
+        if (!confirm('Are you sure you want to delete this page?')) return;
 
-        if (contentImageInput.files?.[0]) {
-            formDataToSend.append("contentImage", contentImageInput.files[0]);
-        }
+        try {
+            const res = await fetch(`/api/pages/${slug}`, {
+                method: 'DELETE',
+            });
 
-        const res = await fetch('/api/pages', {
-            method: 'POST',
-            body: formDataToSend,
-        });
-
-        if (!res.ok) {
-            alert('Error saving page');
-        } else {
-            alert('Page saved successfully');
+            if (res.ok) {
+                setPages(pages.filter((page: any) => page.slug !== slug));
+                alert('Page deleted successfully');
+            } else {
+                alert('Failed to delete the page');
+            }
+        } catch (error) {
+            console.error('Error deleting page:', error);
+            alert('An error occurred while deleting the page.');
         }
     };
+
+    const filteredPages = Array.isArray(pages)
+        ? pages.filter((page: any) =>
+            page.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            page.slug?.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        : [];
 
     return (
-        <div className="container mt-5">
-            <h2>Add/Edit Page</h2>
-            <form onSubmit={handleSubmit}>
-                {/* Meta Fields */}
-                <div className="mb-3">
-                    <label>Title</label>
-                    <input type="text" name="title" className="form-control" onChange={handleChange} />
+        <>
+            <BariatricBanner
+                title="Pages List"
+                imageSrc="/img/bannerslider/Surgery For Reflux 2.webp"
+            />
+
+            <div className="container my-5">
+                <div className="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Manage Pages</h2>
+                    <Link href="/admin/page/page-form" className="btn btn-primary">Add New Page</Link>
                 </div>
 
-                <div className="mb-3">
-                    <label>Description</label>
-                    <input type="text" name="description" className="form-control" onChange={handleChange} />
-                </div>
-
-                <div className="mb-3">
-                    <label>Keywords</label>
-                    <input type="text" name="keywords" className="form-control" onChange={handleChange} />
-                </div>
-
-                <div className="mb-3">
-                    <label>Slug (URL)</label>
-                    <input type="text" name="slug" className="form-control" onChange={handleChange} />
-                </div>
-
-                <div className="mb-3">
-                    <label>Banner Title</label>
-                    <input type="text" name="bannerTitle" className="form-control" onChange={handleChange} />
-                </div>
-
-                {/* Images */}
-                <div className="mb-3">
-                    <label>Banner Image</label>
-                    <input type="file" name="bannerImage" className="form-control" />
-                </div>
-
-                <div className="mb-3">
-                    <label>Content Image</label>
-                    <input type="file" name="contentImage" className="form-control" />
-                </div>
-
-                {/* Introduction */}
-                <div className="mb-3">
-                    <label>Introduction</label>
-                    <TipTapEditor
-                        content={formData.introduction}
-                        onChange={(html) => handleEditorChange(html, 'introduction')}
+                {/* Search Bar */}
+                <div className="mb-4">
+                    <input
+                        type="text"
+                        placeholder="Search by title or slug..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="form-control"
                     />
                 </div>
 
-                {/* Full Content */}
-                <div className="mb-3">
-                    <label>Full Content</label>
-                    <TipTapEditor
-                        content={formData.fullintroduction}
-                        onChange={(html) => handleEditorChange(html, 'fullintroduction')}
-                    />
-                </div>
-
-                {/* FAQs */}
-                <div className="mb-3">
-                    <label>FAQs</label>
-                    {formData.faqs.map((faq, index) => (
-                        <div key={index} className="border p-3 mb-3">
-                            <div className="mb-2">
-                                <input
-                                    type="text"
-                                    placeholder="Question"
-                                    className="form-control"
-                                    value={faq.question}
-                                    onChange={handleFaqChange(index, 'question')}
-                                />
-                            </div>
-                            <div className="mb-2">
-                                <input
-                                    type="text"
-                                    placeholder="Answer"
-                                    className="form-control"
-                                    value={faq.answer}
-                                    onChange={handleFaqChange(index, 'answer')}
-                                />
-                            </div>
+                {loading ? (
+                    <div className="text-center py-5">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
                         </div>
-                    ))}
-                    <button type="button" className="btn btn-secondary btn-sm" onClick={addFaq}>Add FAQ</button>
-                </div>
+                        <p>Loading pages...</p>
+                    </div>
+                ) : (
+                    <>
+                        {/* Total Count */}
+                        <div className="mb-3 text-muted">
+                            Showing {filteredPages.length} of {pages.length} pages
+                        </div>
 
-                <button type="submit" className="btn btn-primary">Save Page</button>
-            </form>
-        </div>
+                        <div className="table-responsive mb-5">
+                            <table className="table table-striped align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Slug</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {filteredPages.length > 0 ? (
+                                        filteredPages.map((page: any) => (
+                                            <tr key={page._id}>
+                                                <td>{page.title}</td>
+                                                <td>{page.slug}</td>
+                                                <td>
+                                                    <Link
+                                                        href={`/admin/page/page-form?slug=${page.slug}`}
+                                                        className="btn btn-sm btn-warning me-2"
+                                                    >
+                                                        Edit
+                                                    </Link>
+                                                    <button
+                                                        onClick={() => handleDelete(page.slug)}
+                                                        className="btn btn-sm btn-danger"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan={3} className="text-center">
+                                                No matching pages found.
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </>
+                )}
+
+                {/* Pagination */}
+                {!loading && (
+                    <nav aria-label="Page navigation example mt-5">
+                        <ul className="pagination justify-content-center">
+                            <li className="page-item disabled">
+                                <button className="page-link">Previous</button>
+                            </li>
+                            <li className="page-item active">
+                                <button className="page-link">1</button>
+                            </li>
+                            <li className="page-item">
+                                <button className="page-link">2</button>
+                            </li>
+                            <li className="page-item">
+                                <button className="page-link">Next</button>
+                            </li>
+                        </ul>
+                    </nav>
+                )}
+            </div>
+        </>
     );
 }
