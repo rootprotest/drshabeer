@@ -94,8 +94,8 @@ export default function PageList() {
                         </div>
 
                         <div className="table-responsive mb-5">
-                            <table className="table table-striped align-middle">
-                                <thead>
+                            <table className="table table-hover table-striped table-bordered">
+                                <thead className="table-dark">
                                     <tr>
                                         <th>Title</th>
                                         <th>Slug</th>
