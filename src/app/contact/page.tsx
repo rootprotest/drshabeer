@@ -123,7 +123,7 @@ export default function ContactPage() {
                                     </div>
                                     <div className="contact-details">
                                         <h4>Address</h4>
-                                        <p>8432 Mante Highway, Aminaport, USA</p>
+                                        <p>830 13 Main 3 Block Koramangala Bangalore 560034</p>
                                     </div>
                                 </div>
                             </div>

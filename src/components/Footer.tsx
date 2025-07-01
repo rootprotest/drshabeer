@@ -40,8 +40,8 @@ const Footer = () => {
                                     <div className="footer-widget footer-menu">
                                         <h2 className="footer-title">For Patients</h2>
                                         <ul>
-                                            <li><Link href="/">Provider</Link></li>
-                                            <li><Link href="/">GI Health Library</Link></li>
+                                            <li><Link href="/providers">Provider</Link></li>
+                                            <li><Link href="/specialities">GI Health Library</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -51,8 +51,17 @@ const Footer = () => {
                                     <div className="footer-widget footer-menu">
                                         <h2 className="footer-title">Patient Resources</h2>
                                         <ul>
-                                            <li><Link href="/">Schedule Appointment</Link></li>
-                                            <li><Link href="/">Contact Us</Link></li>
+                                           <li>
+  <a
+    href="https://www.fortishealthcare.com/doctors/dr-shabeer-ahmed-773?hospital=3514"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Schedule Appointment
+  </a>
+</li>
+
+                                            <li><Link href="/contact">Contact Us</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -65,7 +74,7 @@ const Footer = () => {
                                 <h2 className="footer-title">Team of Expertise</h2>
                                 <ul>
                                     <li><Link href="/aboutus">Dr. Shabeer Ahmed</Link></li>
-                                    <li><Link href="/aboutus">Dr. Meghnad G. Joshi</Link></li>
+                                    <li><Link href="/dr-meghnad">Dr. Meghnad G. Joshi</Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -77,10 +86,11 @@ const Footer = () => {
                                 <ul>
                                     <li><Link href="/aboutus">About Us</Link></li>
                                     <li><Link href="/news-updates">News & Events</Link></li>
-                                    <li><Link href="/blogs">Blogs and Announcement</Link></li>
-                                    <li><Link href="/aboutus">Videos, Reels, Testimonial</Link></li>
-                                    <li><Link href="/aboutus">Symptomatic Checker</Link></li>
-                                    <li><Link href="/aboutus">Quizzes</Link></li>
+                                    <li><Link href="/blogs">Blogs </Link></li>
+                                    <li><Link href="/announcements">Announcement </Link></li>
+                                    <li><Link href="/videos-reels-testimonial">Videos, Reels, Testimonial</Link></li>
+                                    <li><Link href="/symtomatic-checker">Symptomatic Checker</Link></li>
+                                    <li><Link href="/quizes">Quizzes</Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -96,15 +106,15 @@ const Footer = () => {
                             <div className="col-md-6 col-lg-6">
                                 <div className="copyright-text">
                                     <p className="mb-0">
-                                        © 2024 Dr. Shabeer Ahmed. All Rights Reserved.
+                                        © 2025 Dr. Shabeer Ahmed. All Rights Reserved.
                                     </p>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-6">
                                 <div className="copyright-menu">
                                     <ul className="policy-menu">
-                                        <li><Link href="/privacy-policy">Privacy Policy</Link></li>
-                                        <li><Link href="/terms-condition">Terms and Conditions</Link></li>
+                                        <li><Link href="/">Privacy Policy</Link></li>
+                                        <li><Link href="/">Terms and Conditions</Link></li>
                                     </ul>
                                 </div>
                             </div>

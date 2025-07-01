@@ -84,7 +84,7 @@ export default function SpecialitiesSection() {
                 </Swiper>
 
                 <div className="specialities-btn aos mt-5 text-center" data-aos="fade-up">
-                    <Link href="/">
+                    <Link href="/specialities">
                         <Button className="btn">See All Specialities</Button>
                     </Link>
                 </div>
