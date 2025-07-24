@@ -27,7 +27,7 @@ const quizData = [
 
 export default function HealthQuizPage() {
   const [current, setCurrent] = useState(0);
-  const [selected, setSelected] = useState(null);
+const [selected, setSelected] = useState<string | null>(null);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
 
@@ -65,7 +65,7 @@ export default function HealthQuizPage() {
           <div className="quiz-card">
             <h4 className="question">{quizData[current].question}</h4>
             <ul className="option-list">
-              {quizData[current].options.map((option, i) => (
+              {quizData[current].options.map((option: any, i) => (
                 <li
                   key={i}
                   className={`option ${selected === option ? "selected" : ""}`}

@@ -28,82 +28,82 @@ const specialities = [
     title: "Proctology",
     href: "/proctology-specialist-in-bangalore",
     icon: "/img/icons/Proctology.svg",
-  },
-  {
-    title: "Liver Care",
-    href: "/liver-specialist-in-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Pancreatic Disorders",
-    href: "/pancreas-specialist-in-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Hernia Treatment",
-    href: "/hernia-surgeon-in-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Endoscopy",
-    href: "/endoscopy-services-in-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Colonoscopy",
-    href: "/colonoscopy-center-in-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Digestive Wellness",
-    href: "/digestive-wellness-clinic-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Gallbladder Surgery",
-    href: "/gallbladder-surgery-in-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Rectal Disorders",
-    href: "/rectal-disorders-treatment-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Obesity Management",
-    href: "/obesity-treatment-in-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Weight Loss Surgery",
-    href: "/weight-loss-surgeon-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "IBS Management",
-    href: "/ibs-treatment-in-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "GI Cancer Screening",
-    href: "/gi-cancer-screening-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Stomach Disorders",
-    href: "/stomach-specialist-in-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Esophageal Disorders",
-    href: "/esophagus-specialist-bangalore",
-    icon: "/img/icons/Gut Care.svg",
-  },
-  {
-    title: "Nutrition & Diet",
-    href: "/diet-consultation-in-bangalore",
-    icon: "/img/icons/Gut Care.svg",
   }
+//   {
+//     title: "Liver Care",
+//     href: "/liver-specialist-in-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Pancreatic Disorders",
+//     href: "/pancreas-specialist-in-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Hernia Treatment",
+//     href: "/hernia-surgeon-in-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Endoscopy",
+//     href: "/endoscopy-services-in-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Colonoscopy",
+//     href: "/colonoscopy-center-in-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Digestive Wellness",
+//     href: "/digestive-wellness-clinic-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Gallbladder Surgery",
+//     href: "/gallbladder-surgery-in-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Rectal Disorders",
+//     href: "/rectal-disorders-treatment-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Obesity Management",
+//     href: "/obesity-treatment-in-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Weight Loss Surgery",
+//     href: "/weight-loss-surgeon-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "IBS Management",
+//     href: "/ibs-treatment-in-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "GI Cancer Screening",
+//     href: "/gi-cancer-screening-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Stomach Disorders",
+//     href: "/stomach-specialist-in-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Esophageal Disorders",
+//     href: "/esophagus-specialist-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   },
+//   {
+//     title: "Nutrition & Diet",
+//     href: "/diet-consultation-in-bangalore",
+//     icon: "/img/icons/Gut Care.svg",
+//   }
 ];
 
 
@@ -111,9 +111,8 @@ export default function AllSpecialitiesPage() {
   return (
     <section className="all-specialities-page">
       <div className="container">
-        <div className="text-center mb-5">
-          <h1 className="page-title">All Specialities</h1>
-          <p className="text-muted">Explore all areas of care provided</p>
+        <div className="text-center mb-5 mt-80">
+          <h1 className="page-title mt-5">All Specialities</h1>
         </div>
 
         <div className="specialities-grid">

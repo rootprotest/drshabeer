@@ -84,7 +84,7 @@ const GutHealthLibrary = () => {
                 </Swiper>
 
                 <div className="btns-lot mt-5 text-center">
-                    <Link href="/guthealth-list" className="btn btn-primary mx-4 bg-primary">
+                    <Link href="/providers" className="btn btn-primary mx-4 bg-primary">
                         Explore More
                     </Link>
                 </div>

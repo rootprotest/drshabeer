@@ -1,10 +1,12 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
-    domains: ['res.cloudinary.com'],
+    unoptimized: true
   },
-};
+  output: 'export',
+}
 
-export default nextConfig;
+
+module.exports = nextConfig

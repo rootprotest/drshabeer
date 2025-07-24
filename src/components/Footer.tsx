@@ -87,7 +87,7 @@ const Footer = () => {
                                     <li><Link href="/aboutus">About Us</Link></li>
                                     <li><Link href="/news-updates">News & Events</Link></li>
                                     <li><Link href="/blogs">Blogs </Link></li>
-                                    <li><Link href="/announcements">Announcement </Link></li>
+                                    {/* <li><Link href="/announcements">Announcement </Link></li> */}
                                     <li><Link href="/videos-reels-testimonial">Videos, Reels, Testimonial</Link></li>
                                     <li><Link href="/symtomatic-checker">Symptomatic Checker</Link></li>
                                     <li><Link href="/quizes">Quizzes</Link></li>

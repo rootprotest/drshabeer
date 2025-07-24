@@ -86,18 +86,18 @@ const reelData = [
 
 const testimonialData = [
   {
-    name: 'Rahul M.',
-    feedback: 'Thanks to Dr. Shabeer, my surgery was smooth and recovery was quick!',
+    name: 'Arati Sethy',
+    feedback: 'Amidst of covid pandemic, my aunt got diagnosed with colon tumor. Local doctors diagnosed it as cancer stage-1.',
     location: 'Bangalore',
   },
   {
-    name: 'Ayesha S.',
-    feedback: 'Very caring and expert doctor. Highly recommend him!',
+    name: 'Inayathulla Khan Lavani',
+    feedback: `Before visiting Dr. Shabeer Ahmed for my dad's surgery, I had visited other doctors and wasn't satisfied enough`,
     location: 'Hyderabad',
   },
   {
-    name: 'Vinod T.',
-    feedback: 'From consultation to surgery, the whole team was excellent.',
+    name: 'Mir Nasair Hussain',
+    feedback: 'Best ever Dr.I have seen in Bangalore God has given shiffa in his hand Excellent treatment centre in Bangalore',
     location: 'Mysore',
   },
   {
@@ -143,8 +143,7 @@ export default function MediaShowcasePage() {
       <div className="container">
         <h2 className="page-title">Media & Testimonials</h2>
 
-        {/* Videos Section */}
-        <section className="media-section">
+        {/* <section className="media-section">
           <h3 className="section-heading">Videos</h3>
           <div className="media-grid">
             {videoData.map((video, index) => (
@@ -162,7 +161,6 @@ export default function MediaShowcasePage() {
           </div>
         </section>
 
-        {/* Reels Section */}
         <section className="media-section">
           <h3 className="section-heading">Reels</h3>
           <div className="media-grid">
@@ -177,7 +175,7 @@ export default function MediaShowcasePage() {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* Testimonials Section */}
         <section className="testimonial-section">
